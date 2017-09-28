@@ -160,3 +160,84 @@ int SizeList(pNode pHead)
 	}
 	return count;
 }
+
+void PrintListFromTail2Head(pNode pHead)
+{
+	assert(pHead);
+	if(pHead)
+	{
+		PrintListFromTail2Head(pHead->_pNext);
+		printf("%d--->",pHead->_data);
+	}
+}
+
+void DestroyListFromTail2Head(pNode* pHead)
+{
+	assert(pHead);
+	if(pHead)
+	{
+		DestroyListFromTail2Head(&(*pHead)->_pNext);
+		free(*pHead);
+		*pHead = NULL;
+	}
+}
+
+void DeleteNotTailNode(pNode pos)
+{
+	pNode pCur = NULL;
+	if(pos)
+	{
+		pCur = pos->_pNext;
+		pos->_data = pCur->_data;
+		pos->_pNext = pCur->_pNext;
+		free(pCur);
+	}
+}
+// 非头结点前插入data 
+void InsertNotHead(pNode pos,DataType data)
+{
+	pNode pNewNode;
+	pNode pCur;
+	if(NULL == pos)
+		return;
+	pNewNode = BuyNode(data);
+	if(NULL == pNewNode)
+		return;
+	pCur = pos;
+	pNewNode->_pNext = pCur->_pNext;
+	pCur->_pNext = pNewNode;
+}
+
+// 单链表实现约瑟夫环 
+pNode JosephCircle(pNode pHead, size_t M)
+{
+	pNode pCur;
+	pNode pDel;
+	int count = 0;
+	if(NULL == pHead)
+		return NULL;
+	pCur = pHead;
+	//构环
+	while(pCur->_pNext)
+	{
+		pCur=pCur->_pNext;
+	}
+	pCur->_pNext = pHead;
+	while(pCur != pCur->_pNext)
+	{
+		//报数
+	    count = M;
+	    while(--count)
+	    {
+		    pCur = pCur->_pNext;
+	    }
+	    //删节点
+	    pDel = pCur->_pNext;
+	    pCur->_data = pDel->_data;
+	    pCur->_pNext = pDel->_pNext;
+	    free(pDel);
+	}
+	//解环
+	pCur->_pNext = NULL;
+	return pCur;
+}
