@@ -14,7 +14,15 @@ enum
 	INSE,
 	FIND,
 	ERAS,
-	SIZE
+	SIZE,
+        PRTH,
+	DETH,
+	DENT,
+	INNH,
+	JOCI,
+	REL1,
+	REL2,
+	FIMN
 };
 
 void menu()
@@ -25,7 +33,11 @@ void menu()
 	printf("*********  2.PopB        3.Prin  *********\n");
 	printf("*********  4.PusF        5.PopF  *********\n");
 	printf("*********  6.Inse        7.Find  *********\n");
-	printf("*********  8.Eras        9.Size*********\n");
+	printf("*********  8.Eras        9.Size  *********\n");
+	printf("*********  10.PrTH       11.DeTH *********\n");
+	printf("*********  12.DeNT       13.InNH *********\n");
+	printf("*********  13.JoCi       14.ReL1 *********\n");
+	printf("*********  15.ReL2       16.FiMN *********\n");
 	printf("******************************************\n");
 }
 
@@ -81,6 +93,35 @@ void test()
 			int i=0;
 			i = SizeList(pHead);
 			printf("该链表的节点个数为：%d\n",i);
+			break;
+		case PRTH:
+			PrintListFromTail2Head(pHead);
+			break;
+		case DETH:
+			DestroyListFromTail2Head(&pHead);
+			break;
+		case DENT:
+			{
+				pNode pos;
+				pos = FindList(pHead,2);
+	            DeleteNotTailNode(pos);
+			}
+			break;
+		case INNH:
+			{
+				pNode pos;
+				pos = FindList(pHead,2);
+				InsertNotHead(pos,4);
+			}
+			break;
+		case JOCI:
+			JosephCircle(pHead,3);
+			break;
+		case REL1:
+			break;
+		case REL2:
+			break;
+		case FIMN:
 			break;
 		default:
 			printf("输入错误，请重新输入:>");
