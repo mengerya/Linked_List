@@ -118,10 +118,13 @@ void test()
 			JosephCircle(pHead,3);
 			break;
 		case REL1:
+			ReverseList_1(pHead);
 			break;
 		case REL2:
+			ReverseList_2(pHead);
 			break;
 		case FIMN:
+			FindMidNode(pHead);
 			break;
 		default:
 			printf("输入错误，请重新输入:>");
