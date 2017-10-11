@@ -30,4 +30,12 @@ void DeleteNotTailNode(pNode pos);
 void InsertNotHead(pNode pos,DataType data);
 // 单链表实现约瑟夫环 
 pNode JosephCircle(pNode pHead, size_t M); 
+// 单链表的逆置--前后指针 
+pNode ReverseList_1(pNode pHead); 
+// 单链表的逆置--头插法 
+pNode ReverseList_2(pNode pHead); 
+// 查找链表的中间结点---要求不能遍历单链表 
+pNode FindMidNode(pNode pHead);
+//使用冒泡对单链表进行排序
+void BubbleSort(pNode pHead);
 #endif //__LINKED_LIST__
