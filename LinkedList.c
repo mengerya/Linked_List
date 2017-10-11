@@ -301,3 +301,30 @@ pNode FindMidNode(pNode pHead)
 	}
 	return pSlow;
 }
+//冒泡排序
+void BubbleSort(pNode pHead){
+	pNode pCur = pHead;
+	pNode pPreCur = NULL;
+	pNode pTail = NULL;
+	int ischange = 0;
+	if(NULL == pHead || NULL == pHead->_pNext)
+		return;
+	while(pTail != pHead){
+		pPreCur = pHead;
+		pCur = pHead->_pNext;
+		ischange = 0;
+		while(pCur != pTail){
+			if(pPreCur->_data > pCur->_data){
+				DataType temp = 0;
+				temp = pPreCur->_data;
+				pPreCur->_data = pCur->_data;
+				pCur->_data = temp;
+				ischange = 1;
+			}
+			pPreCur = pCur;
+			pCur = pCur->_pNext;
+		}
+		if(!ischange)
+			pTail = pPreCur;
+	}
+}
