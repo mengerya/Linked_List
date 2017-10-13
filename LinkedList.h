@@ -38,4 +38,6 @@ pNode ReverseList_2(pNode pHead);
 pNode FindMidNode(pNode pHead);
 //使用冒泡对单链表进行排序
 void BubbleSort(pNode pHead);
+//合并两个已序链表，合并之后新链表仍然有序
+pNode MergeList(pNode pHead1,pNode pHead2);
 #endif //__LINKED_LIST__
