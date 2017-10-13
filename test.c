@@ -133,10 +133,32 @@ void test()
 
 	}while(input);
 }
+//检测合成两个单链表
+void test1()
+{
+	pNode pHead1;
+	pNode pHead2;
+	pNode pHead;
+	InitList(&pHead1);
+	InitList(&pHead2);
+	PushBack(&pHead1,2);
+	PushBack(&pHead1,4);
+	PushBack(&pHead1,6);
+	PushBack(&pHead1,8);
+	PushBack(&pHead2,2);
+	PushBack(&pHead2,3);
+	PushBack(&pHead2,5);
+	PushBack(&pHead2,7);
+	PrintList(pHead1);
+	PrintList(pHead2);
+	pHead = MergeList(pHead1,pHead2);
+	PrintList(pHead);
+}
 
 int main()
 {
-	test();
+	test1();
+	//test();
 	system("pause");
 	return 0;
 }
