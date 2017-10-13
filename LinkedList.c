@@ -328,3 +328,41 @@ void BubbleSort(pNode pHead){
 			pTail = pPreCur;
 	}
 }
+//合并两个已序链表，合并之后新链表仍然有序
+pNode MergeList(pNode pHead1,pNode pHead2){
+	pNode pNewHead = NULL;
+	pNode pCur1 = pHead1;
+	pNode pCur2 = pHead2;
+	pNode pTailNode = NULL;
+	if(NULL == pCur1)
+		return pCur2;
+	if(NULL == pCur2)
+		return pCur1;
+	if(pCur1->_data <= pCur2->_data){
+		pNewHead = pCur1;
+		pTailNode = pCur1;
+		pCur1 = pCur1->_pNext;
+	}
+	else{
+		pNewHead = pCur2;
+		pTailNode = pCur2;
+		pCur2 = pCur2->_pNext;
+	}
+	while( pCur1 && pCur2){
+		if(pCur1->_data < pCur2->_data){
+			pTailNode->_pNext = pCur1;
+			pCur1 = pCur1->_pNext;
+		}
+		else{
+			pTailNode->_pNext = pCur2;
+			pCur2 = pCur2->_pNext;
+		}
+		pTailNode = pTailNode->_pNext;
+	}
+	if(pCur1)
+		pTailNode->_pNext = pCur1;
+	if(pCur2)
+		pTailNode->_pNext = pCur2;
+
+	return pNewHead;
+}
