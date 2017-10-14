@@ -40,4 +40,8 @@ pNode FindMidNode(pNode pHead);
 void BubbleSort(pNode pHead);
 //合并两个已序链表，合并之后新链表仍然有序
 pNode MergeList(pNode pHead1,pNode pHead2);
+//查找无头单链表的倒数第K个节点
+pNode FindLastKNode(pNode pHead,int K);
+//删除无头单链表的倒数第K个节点
+pNode DeleteLastKNode(pNode* pHead,int K);
 #endif //__LINKED_LIST__
