@@ -366,3 +366,22 @@ pNode MergeList(pNode pHead1,pNode pHead2){
 
 	return pNewHead;
 }
+pNode FindLastKNode(pNode pHead,int K)
+{
+	pNode pFast = pHead;
+	pNode pSlow = pHead;
+	if(NULL == pHead || K<=0)
+		return NULL;
+	while(K--)
+	{
+		if(NULL == pFast)
+			return NULL;
+		pFast = pFast->_pNext;
+	}
+	while(pFast)
+	{
+		pFast = pFast->_pNext;
+		pSlow = pSlow->_pNext;
+	}
+	return pSlow;
+}
