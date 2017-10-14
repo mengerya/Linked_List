@@ -154,10 +154,25 @@ void test1()
 	pHead = MergeList(pHead1,pHead2);
 	PrintList(pHead);
 }
-
+//检测查找一个单链表的倒数第k个节点
+void test2()
+{	
+	pNode pHead1;
+	pNode pHead;
+	int k = 2;
+	InitList(&pHead1);
+	PushBack(&pHead1,2);
+	PushBack(&pHead1,4);
+	PushBack(&pHead1,6);
+	PushBack(&pHead1,8);
+	PrintList(pHead1);
+	pHead = FindLastKNode(pHead1,k);
+	PrintList(pHead);
+}
 int main()
 {
-	test1();
+	test2();
+	//test1();
 	//test();
 	system("pause");
 	return 0;
