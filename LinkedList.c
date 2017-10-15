@@ -437,3 +437,17 @@ int GetCircleLen(pNode pHead)
 	}
 	return count;
 }
+//含环链表入口点
+pNode GetEnterNode(pNode pHead,pNode pMeetNode)
+{
+	pNode pH = pHead;
+	pNode pM = pMeetNode;
+	if(NULL == pHead || NULL == pMeetNode)
+		return NULL;
+	while(pH != pM)
+	{
+		pH = pH->_pNext;
+		pM = pM->_pNext;
+	}
+	return pH;
+}
