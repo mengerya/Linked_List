@@ -406,4 +406,34 @@ pNode DeleteLastKNode(pNode* pHead,int K){
 	pPreSlow->_pNext = pSlow->_pNext;
 	return *pHead;
 }
-
+//判断链表是否带环
+pNode HasCircle(pNode pHead)
+{
+	pNode pFast = pHead;
+	pNode pSlow = pHead;
+	if(NULL == pHead)
+		return NULL;
+	while(pFast && pFast->_pNext)
+	{
+		pFast = pFast->_pNext->_pNext;
+		pSlow = pSlow->_pNext;
+		if(pSlow == pFast)
+			return pFast;
+	}
+	return NULL;
+}
+//得到带环链表环的长度
+int GetCircleLen(pNode pHead)
+{
+	pNode pMeetNode = HasCircle(pHead);
+	pNode pCur = pMeetNode;
+	int count = 1;
+	if(NULL == pMeetNode)
+		return 0;
+	while(pCur->_pNext != pMeetNode)
+	{
+		count++;
+		pCur = pCur->_pNext;
+	}
+	return count;
+}
