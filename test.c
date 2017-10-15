@@ -169,9 +169,47 @@ void test2()
 	pHead = FindLastKNode(pHead1,k);
 	PrintList(pHead);
 }
+//检测删除无头单链表的倒数第K个节点
+void test3(){	
+	pNode pHead1;
+	int k = 2;
+	InitList(&pHead1);
+	PushBack(&pHead1,2);
+	PushBack(&pHead1,4);
+	PushBack(&pHead1,6);
+	PushBack(&pHead1,8);
+	PrintList(pHead1);
+	pHead1 = DeleteLastKNode(&pHead1,k);
+	PrintList(pHead1);
+}
+//测试含环链表环的长度及入口点
+void test4()
+{
+	pNode pHead1;
+	pNode pTailNode = NULL;
+	int r = 0;
+	pNode pEnter = NULL;
+	InitList(&pHead1);
+	PushBack(&pHead1,1);
+	PushBack(&pHead1,2);
+	PushBack(&pHead1,3);
+	PushBack(&pHead1,4);
+	PushBack(&pHead1,5);
+	PushBack(&pHead1,6);
+	PushBack(&pHead1,7);
+	PushBack(&pHead1,8);
+	pTailNode = BackList(pHead1);
+	pTailNode->_pNext = FindList(pHead1,5);//构环
+	r = GetCircleLen(pHead1);
+	printf("%d\n",r);
+	pEnter = GetEnterNode(pHead1,HasCircle(pHead1));
+	printf("%d\n",pEnter->_data);
+}
 int main()
 {
-	test2();
+	test4();
+	//test3();
+	//test2();
 	//test1();
 	//test();
 	system("pause");
