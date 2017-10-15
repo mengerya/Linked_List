@@ -44,4 +44,10 @@ pNode MergeList(pNode pHead1,pNode pHead2);
 pNode FindLastKNode(pNode pHead,int K);
 //删除无头单链表的倒数第K个节点
 pNode DeleteLastKNode(pNode* pHead,int K);
+//返回链表的最后一个节点
+pNode BackList(pNode pHead);
+// 判断链表是否带环，如果带环求环的长度，并给出入口点
+pNode HasCircle(pNode pHead);
+int GetCircleLen(pNode pHead);
+pNode GetEnterNode(pNode pHead,pNode pMeetNode);
 #endif //__LINKED_LIST__
