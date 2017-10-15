@@ -366,6 +366,7 @@ pNode MergeList(pNode pHead1,pNode pHead2){
 
 	return pNewHead;
 }
+//查找无头单链表的倒数第K个节点
 pNode FindLastKNode(pNode pHead,int K)
 {
 	pNode pFast = pHead;
@@ -385,3 +386,24 @@ pNode FindLastKNode(pNode pHead,int K)
 	}
 	return pSlow;
 }
+//删除无头单链表的倒数第K个节点
+pNode DeleteLastKNode(pNode* pHead,int K){
+	pNode pFast = *pHead;
+	pNode pPreSlow = NULL;
+	pNode pSlow = *pHead;
+	if(NULL == *pHead || K<=0)
+		return NULL;
+	while(K--){
+		if(NULL == pFast)
+			return NULL;
+		pFast = pFast->_pNext;
+	}
+	while(pFast){
+		pFast = pFast->_pNext;
+		pPreSlow = pSlow;
+		pSlow = pSlow->_pNext;
+	}
+	pPreSlow->_pNext = pSlow->_pNext;
+	return *pHead;
+}
+
