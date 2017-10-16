@@ -50,4 +50,8 @@ pNode BackList(pNode pHead);
 pNode HasCircle(pNode pHead);
 int GetCircleLen(pNode pHead);
 pNode GetEnterNode(pNode pHead,pNode pMeetNode);
+//判断两个链表是否相交(不含环)
+int IsCrossWithoutCircle(pNode pHead1,pNode pHead2);
+//两个链表相交的交点(不含环)
+pNode GetCrossWithoutCircle(pNode pHead1,pNode pHead2);
 #endif //__LINKED_LIST__
