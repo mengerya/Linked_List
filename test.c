@@ -205,9 +205,34 @@ void test4()
 	pEnter = GetEnterNode(pHead1,HasCircle(pHead1));
 	printf("%d\n",pEnter->_data);
 }
+//检测两个链表相交的交点（不含环）
+void test5()
+{
+	pNode pHead1;
+	pNode pHead2;
+	pNode pTailNode = NULL;
+	pNode pMeetNode = NULL;
+	InitList(&pHead1);
+	InitList(&pHead2);
+	PushBack(&pHead1,1);
+	PushBack(&pHead1,2);
+	PushBack(&pHead1,3);
+	PushBack(&pHead1,4);
+	PushBack(&pHead1,5);
+	PushBack(&pHead1,6);
+	PushBack(&pHead2,7);
+	PushBack(&pHead2,8);
+	PushBack(&pHead2,9);
+	pTailNode = BackList(pHead2);
+	pTailNode->_pNext = FindList(pHead1,4);
+	pMeetNode = GetCrossWithoutCircle(pHead1,pHead2);
+	PrintList(pMeetNode);
+}
+
 int main()
 {
-	test4();
+	test5();
+	//test4();
 	//test3();
 	//test2();
 	//test1();
