@@ -451,3 +451,46 @@ pNode GetEnterNode(pNode pHead,pNode pMeetNode)
 	}
 	return pH;
 }
+
+//判断两个链表是否相交(不含环)
+int IsCrossWithoutCircle(pNode pHead1,pNode pHead2)
+{
+	pNode pTailNode1 = NULL;
+	pNode pTailNode2 = NULL;
+	if(NULL == pHead1 || NULL == pHead2)
+		return 0;
+	pTailNode1 = BackList(pHead1);
+	pTailNode2 = BackList(pHead2);
+	if(pTailNode1 == pTailNode2)
+		return 1;
+	return 0;
+}
+//两个链表相交的交点(不含环)
+pNode GetCrossWithoutCircle(pNode pHead1,pNode pHead2)
+{
+	int size1 = 0,size2 = 0;
+	int grap = 0;
+	pNode pCur1 = pHead1;
+	pNode pCur2 = pHead2;
+	if(!IsCrossWithoutCircle(pHead1,pHead2))
+		return NULL;
+	size1 = SizeList(pHead1);
+	size2 = SizeList(pHead2);
+	grap = size1 - size2;
+	if(grap>0)
+	{
+		while(grap--)
+			pCur1 = pCur1->_pNext;
+	}
+	else
+	{
+		while(grap++)
+			pCur2 = pCur2->_pNext;
+	}
+	while(pCur1 != pCur2)
+	{
+		pCur1 = pCur1->_pNext;
+		pCur2 = pCur2->_pNext;
+	}
+	return pCur1;
+}
