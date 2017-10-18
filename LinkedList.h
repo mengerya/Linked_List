@@ -54,4 +54,6 @@ pNode GetEnterNode(pNode pHead,pNode pMeetNode);
 int IsCrossWithoutCircle(pNode pHead1,pNode pHead2);
 //两个链表相交的交点(不含环)
 pNode GetCrossWithoutCircle(pNode pHead1,pNode pHead2);
+//判断两个链表是否相交(可能含环)
+int IsCrossWithCircle(pNode pHead1,pNode pHead2);
 #endif //__LINKED_LIST__
