@@ -494,3 +494,28 @@ pNode GetCrossWithoutCircle(pNode pHead1,pNode pHead2)
 	}
 	return pCur1;
 }
+
+//判断两个链表是否相交(可能含环)
+int IsCrossWithCircle(pNode pHead1,pNode pHead2)
+{
+	pNode pMeet1 = HasCircle(pHead1);
+	pNode pMeet2 = HasCircle(pHead2);
+	if(NULL == pMeet1 && NULL == pMeet2)//都不带环
+	{
+		if(BackList(pHead1) == BackList(pHead2))
+			return 1;
+	}
+	else if(pMeet1 && pMeet2)//都带环
+	{
+		pNode pCur = pMeet1;
+		while(pCur->_pNext != pCur)
+		{
+			if(pCur == pMeet2)
+				return 2;
+			pCur = pCur->_pNext;
+		}
+		if(pCur == pMeet2)
+			return 2;
+	}
+	return 0;
+}
