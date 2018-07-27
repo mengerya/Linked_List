@@ -2,6 +2,10 @@
 #include<stdio.h>
 #include<assert.h>
 #include<malloc.h>
+#include<iostream>
+#include<stack>
+
+using namespace std;
 
 void InitList(pNode* pHead)
 {
@@ -160,17 +164,44 @@ int SizeList(pNode pHead)
 	}
 	return count;
 }
-
+//返回链表的最后一个节点
+pNode BackList(pNode pHead)
+{
+	pNode pCur = pHead;
+	if(NULL == pHead)
+		return NULL;
+	while(pCur->_pNext)
+		pCur = pCur->_pNext;
+	return pCur;
+}
+// 逆向打印单链表 --递归实现
 void PrintListFromTail2Head(pNode pHead)
 {
-	assert(pHead);
-	if(pHead)
-	{
-		PrintListFromTail2Head(pHead->_pNext);
-		printf("%d--->",pHead->_data);
+	if (pHead != NULL){
+		if (pHead->_pNext != NULL){
+			PrintListFromTail2Head(pHead->_pNext);
+		}
+		printf("%d\t", pHead->_data);
 	}
 }
 
+//利用栈实现逆向打印链表
+void PrintListFromTail2Head_Stack(pNode pHead){
+	stack<pNode> nodes;
+
+	pNode pCur = pHead;
+	while (pCur != NULL){
+		nodes.push(pCur);
+		pCur = pCur->_pNext;
+	}
+	while (!nodes.empty()){
+		pCur = nodes.top();
+		printf("%d\t", pCur->_data);
+		nodes.pop();
+	}
+}
+
+// 逆向销毁单链表 
 void DestroyListFromTail2Head(pNode* pHead)
 {
 	assert(pHead);
@@ -181,7 +212,7 @@ void DestroyListFromTail2Head(pNode* pHead)
 		*pHead = NULL;
 	}
 }
-
+// 删除单链表的非尾结点
 void DeleteNotTailNode(pNode pos)
 {
 	pNode pCur = NULL;
@@ -209,7 +240,7 @@ void InsertNotHead(pNode pos,DataType data)
 }
 
 // 单链表实现约瑟夫环 
-pNode JosephCircle(pNode pHead, size_t M)
+pNode JosephCircle(pNode pHead, int M)
 {
 	pNode pCur;
 	pNode pDel;
@@ -223,6 +254,7 @@ pNode JosephCircle(pNode pHead, size_t M)
 		pCur=pCur->_pNext;
 	}
 	pCur->_pNext = pHead;
+	pCur = pHead;
 	while(pCur != pCur->_pNext)
 	{
 		//报数
@@ -241,7 +273,6 @@ pNode JosephCircle(pNode pHead, size_t M)
 	pCur->_pNext = NULL;
 	return pCur;
 }
-
 
 // 单链表的逆置--前后指针 
 pNode ReverseList_1(pNode pHead)
@@ -272,7 +303,7 @@ pNode ReverseList_2(pNode pHead)
 	pNode pPre = NULL;
 	pNode pCur = NULL;
 	pNode pNewHead = NULL;
-	if(NULL == pNewHead)
+	if(NULL == pHead)
 		return NULL;
 	pPre = pHead;
 	pCur = pHead->_pNext;
@@ -287,7 +318,23 @@ pNode ReverseList_2(pNode pHead)
 	pNewHead = pPre;
 	return pNewHead;
 }
-// 查找链表的中间结点---要求不能遍历单链表 
+//使用递归实现单链表的逆置
+pNode ReverseList_3(pNode pCur,pNode pHead)
+{
+	if((NULL == pCur) || (NULL == pCur->_pNext))
+	{
+		pHead = pCur;
+		return pCur;
+	}
+	else
+	{
+		pNode pNext = ReverseList_3(pCur->_pNext,pHead);
+		pNext->_pNext = pCur;
+		pCur->_pNext = NULL;
+		return pCur;
+	}
+}
+ 
 pNode FindMidNode(pNode pHead)
 {
 	pNode pSlow = pHead;
@@ -301,7 +348,7 @@ pNode FindMidNode(pNode pHead)
 	}
 	return pSlow;
 }
-//冒泡排序
+//使用冒泡对单链表进行排序
 void BubbleSort(pNode pHead){
 	pNode pCur = pHead;
 	pNode pPreCur = NULL;
@@ -366,21 +413,17 @@ pNode MergeList(pNode pHead1,pNode pHead2){
 
 	return pNewHead;
 }
-//查找无头单链表的倒数第K个节点
-pNode FindLastKNode(pNode pHead,int K)
-{
+pNode FindLastKNode(pNode pHead,int K){
 	pNode pFast = pHead;
 	pNode pSlow = pHead;
 	if(NULL == pHead || K<=0)
 		return NULL;
-	while(K--)
-	{
+	while(K--){
 		if(NULL == pFast)
 			return NULL;
 		pFast = pFast->_pNext;
 	}
-	while(pFast)
-	{
+	while(pFast){
 		pFast = pFast->_pNext;
 		pSlow = pSlow->_pNext;
 	}
@@ -451,7 +494,6 @@ pNode GetEnterNode(pNode pHead,pNode pMeetNode)
 	}
 	return pH;
 }
-
 //判断两个链表是否相交(不含环)
 int IsCrossWithoutCircle(pNode pHead1,pNode pHead2)
 {
@@ -494,7 +536,6 @@ pNode GetCrossWithoutCircle(pNode pHead1,pNode pHead2)
 	}
 	return pCur1;
 }
-
 //判断两个链表是否相交(可能含环)
 int IsCrossWithCircle(pNode pHead1,pNode pHead2)
 {
@@ -519,3 +560,4 @@ int IsCrossWithCircle(pNode pHead1,pNode pHead2)
 	}
 	return 0;
 }
+
